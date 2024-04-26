@@ -5,48 +5,61 @@ class Stunden:
     def __init__(self, name):
         self.name = name
         self.gladness = 50
-        self.progress = 0
+        self.progress = 50
+        self.dry = 50
         self.arbeit = True
 
     def to_study(self):
-        print("Uhr fur Studien ")
-        self.progress += 0.12
-        self.gladness -= 3
+        print("Time to eat the dry food ")
+        self.progress += 30
+        self.gladness -= 10
+        self.dry -= 30
 
     def to_chill(self):
-        print("Uhr fur schlaffen ")
-        self.gladness += 3
+        print("DRINK DRINK DRINK")
+        self.dry += 100
 
     def to_sleep(self):
-        print("Ich kuhlen ")
-        self.gladness += 5
-        self.progress -= 0.1
+        print("I will play with someone!")
+        self.gladness += 75
+        self.progress -= 40
+		self.dry -= 75
 
+	def to_doy(self):
+        print("ZzzzzZzzzz")
+        self.gladness += 3
+        self.progress = 100
+		
     def is_alive(self):
-        if self.progress < -0.5:
-            print('Aus der Schule geworfen')
+        if self.progress < -1:
+            print('Your dog die of tired')
             self.arbeit = False
         elif self.gladness <= 0:
-            print("Sie haben im Alter von null Jahren eine Depression")
+            print("Your dog become human emo")
             self.arbeit = False
-        elif self.progress > 5:
-            print("Du genius")
+        elif self.progress > 500:
+            print("Your dog was so energy, that broke window and die")
             self.arbeit = False
-
+        elif self.dry <= 0:
+            print("Your dog die of dry")
+            self.arbeit = False
     def end_of_day(self):
         print(f"Gladness = {self.gladness}")
-        print(f"Progress = {round(self.progress, 2)}")
+        print(f"Hunger = {round(self.progress, 2)}")
+		print(f"Thirst = {round(self.dry, 2)}")
 
     def live(self, day):
         day = "Day" + str(day) + "of" + self.name + "life"
         print(f"{day:=^50}")
-        live_cube = random.randint(1,3 )
+        live_cube = random.randint(1,4 )
         if live_cube == 1:
             self.to_study()
         elif live_cube == 2:
             self.to_sleep()
         elif live_cube == 3:
             self.to_chill()
+		elif live_cube == 4:
+            self.to_doy()
         self.end_of_day()
         self.is_alive()
 
